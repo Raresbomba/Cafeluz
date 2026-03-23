@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ro">
+<!--  Cerinta 2: liniile 7-11 -->
+<!--  Cerinta 3: linia 10 -->
+<!--  Cerinta 6: linia 89 -->
+<!--  Cerinta 7: linia 50 -->
+<!--  Cerinta 8: linia 28 -->
+<!--  Cerinta 9: linia 57, 161 -->
+<!-- Cerinta 10: linia 284 -->
+<!--  Cerinta 11: linia 69  -->
+<!--  Cerinta 12: liniile 166, 100 -->
+<!--  Cerinta 13: linia 328,304 -->
+<!--  Cerinta 14: linia 366 -->
+<!--  Cerinta 15: linia 194 -->
+<!--  Cerinta 16: linia 311 -->
+<!--  Cerinta 17: linia 320,385, 374 -->
+<!--  Cerinta 18: footer-->
+<!--  Cerinta 19: footer-->
+
+<head>
+
+    <title>Cafeluz</title>
+    <meta name="description"
+        content="Cafeluz este un magazin pentru toti pasionatii de cafea, in care se vinde atat cafea, cat si accesorii speciale de facut cafea">
+    <meta name="keywords"
+        content="cafeluz, cafea, cafea de specialitate, magazin de cafea, espressoare, cafenea, cafenea bucuresti, accesorii barista">
+
+   <%- include("../fragmente/head.ejs") %>
+</head>
+
+<body>
+    <!--  Cerinta 5 -->
+    <%- include("../fragmente/header.ejs") %>
+
+    <main> <!--  comentariu -->
+        <div id="grid-pagina">
+            <!--  Cerinta 6 -->
+            <section id="welcome"> <!-- capitol = section-->
+                <!--  Cerinta 7 -->
+                <hgroup>
+                    <h2>Bine ati venit</h2>
+                    <p class="subtitlu">Prezentarea cafenelei</p>
+                </hgroup>
+
+                <p class="intro">Cafeluz este un magazin de cafea de specialitate, espressoare și accesorii barista
+                    dedicat tuturor cafegiilor profesioniști sau amatori.
+                    Pe site-ul nostru veți găsi o varietate de produse, de la cafea de specialitate, până la accesorii
+                    pentru orice barista în devenire.<br>
+                    Iată ofertele noastre:
+                </p>
+
+                <div class="intro-oferte">
+                    <div></div>
+                    <div>Cafea de specialitate</div>
+                    <div>Espressoare</div>
+                    <div>Accesorii barista</div>
+                </div>
+                <p class="anunt intro">Pentru orice degustare, participare la evenimente sau pentru mai multe
+                    informații, vă așteptăm la cafenea!<br>
+                    Ne găsiți în București, pe Calea Floreasca, nr 16, la parter.</p>
+            </section>
+            <section id="promotii">
+                <h2>Promoții și oferte</h2>
+                <article>
+                    <h3 class="titlu">Super ofertă de weekend</h3>
+                    <p><b>Cafeneaua Cafeluz</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate cafelele
+                        cumpărate în intervalul 10-14.</p>
+                    <p>Oferta este valabilă doar în zilele de sâmbătă și duminică la sediul <abbr
+                            title="Cafeneaua Cafeluz">CC</abbr>.</p>
+
+                </article>
+                <article>
+                    <h3>Ofertă pachet</h3>
+                    <p>La orice espressor cumpărat de minim 1000 de lei, Cafeluz vă oferă:</p>
+                    <ol>
+                        <li>Un distribuitor de tip <b>WDT</b> la alegere</li>
+                        <li>Un <i lang="en">tamper</i></li>
+                        <li>O pâlnie pentru râșnire</li>
+                        <li>O latieră</li>
+                    </ol>
+
+                </article>
+                <article>
+                    <h3>Cel mai bun cadou de Crăciun!</h3>
+                    <p>În perioada 12-24 Decembrie, toate produsele noastre sunt reduse cu 15%!</p>
+                    <p>Dar, pentru a fi în temă, toate produsele noastre de culoare <b>Roșie</b> sunt reduse cu 20%!</p>
+
+                </article>
+            </section>
+            <section id="produse">
+                <h2>Produsele noastre</h2>
+                <p>Vă oferim o multitudine de produse, de la pungi de cafea de specialitate până la Espressoare și
+                    Accesorii barista.</p>
+                <section>
+                    <h3>Cafea</h3>
+                    <p>Cafeaua gata preparată este valabilă doar în cafenele! (Din păcate este cam greu să o
+                        transportăm)</p>
+                    <p>Cafea fără lapte:</p>
+                    <ul>
+                        <li>Espresso</li>
+                        <li>Doppio</li>
+                        <li>Americano</li>
+                        <li>Long Black</li>
+                    </ul>
+                    <p>Cafea cu lapte:</p>
+                    <ul>
+                        <li>Espresso Macchiato</li>
+                        <li>Cortado</li>
+                        <li>Cappuccino</li>
+                        <li>Flat White</li>
+                        <li>Latte</li>
+                        <li>Latte Macchiato</li>
+                    </ul>
+                    <p>Cafea alternativă:</p>
+                    <ul>
+                        <li>V60</li>
+                        <li>Aeropress</li>
+                        <li>French Press</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Pungi de Cafea</h3>
+                    <p>Pentru a experimenta cafeaua de specialitate acasă, vă oferim la dispoziție o gamă largă de pungi
+                        de cafea:</p>
+                    <ul>
+                        <li>Ethiopia Gargari</li>
+                        <li>Colombia Exotico</li>
+                        <li>El Salvador La Ilusion</li>
+                        <li>Costa Rica El Rayo</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Espressoare</h3>
+                    <p>Oferim o serie vastă de espressoare pentru toate nivelele:</p>
+
+                    <dl>
+                        <dt><b>Seria Sage Bambino:</b></dt>
+                        <dd> espressoare <i lang="en">Entry-Level</i> pentru pasionații la început de drum</dd>
+                        <dt><b>Seria Delonghi Dedica:</b></dt>
+                        <dd>espressoare <i lang="en">Entry-Level</i> pentru pasionații la început de drum
+                        </dd>
+                        <dt><b>Seria Sage Barista:</b></dt>
+                        <dd>espressoare pentru entuziaștii care-și doresc o experiență mai profesională și o cafea mai
+                            aromată în buget redus
+                        </dd>
+                        <dt><b>Seria Delonghi La Specialista:</b></dt>
+                        <dd>espressoare pentru entuziaștii care-și doresc o experiență mai profesională și o cafea mai
+                            aromată în buget redus
+                        </dd>
+                        <dt><b>Seria Victoria Arduino:</b></dt>
+                        <dd> espressoare profesionale pentru maeștrii cafegii, care vor sa scoată întreaga esență a
+                            cafelei
+                        </dd>
+                    </dl>
+                </section>
+
+                <section>
+                    <h3>Accesorii Barista</h3>
+                    <p>Cafeneaua noastră vă oferă o gamă largă de accesorii pentru prepararea cafelei:</p>
+                    <ul>
+                        <li>Latiere</li>
+                        <li>Portafiltre</li>
+                        <li>Râșnițe</li>
+                        <li>Distribuitoare WDT</li>
+                        <li>Filtre V60</li>
+                        <li>Filtre pentru portafiltru</li>
+                        <li>Kit-uri V60</li>
+                        <li>Nivelatoare</li>
+                        <li>Tampere</li>
+                        <li>Pâlnii</li>
+                    </ul>
+                </section>
+            </section>
+            <section id="orar">
+                <h2>Orar</h2>
+                <table id="tab-orar">
+                    <thead>
+
+                        <tr>
+                            <th>Cod</th>
+                            <th>Perioadă</th>
+                            <th>Zi</th>
+                            <th>Interval dimineata</th>
+                            <th>Pauza de masa</th>
+                            <th>Interval seară</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td rowspan="5">Zile<br />Lucrătoare</td>
+                            <td>Luni</td>
+                            <td>7-12</td>
+                            <td>12-13</td>
+                            <td>13-18</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td>Marti</td>
+                            <td>7-12</td>
+                            <td>12-13</td>
+                            <td>13-18</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td>Miercuri</td>
+                            <td>7-12</td>
+                            <td>12-13</td>
+                            <td>13-18</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td>Joi</td>
+                            <td>7-12</td>
+                            <td>12-13</td>
+                            <td>13-18</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td>Vineri</td>
+                            <td>9-12</td>
+                            <td>12-13</td>
+                            <td>13-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td rowspan="2">Weekend</td>
+                            <td>Sambata</td>
+                            <td>10-13</td>
+                            <td>13-14</td>
+                            <td>14-22</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Duminica</td>
+                            <td>10-14</td>
+                            <td>14-15</td>
+                            <td>15-22</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6">Închis cu ocazia sărbătorilor legale.</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p><strong>Atentie!!!</strong> in prima zi a lunii facem inventar.</p>
+                <h3>Grad de ocupare magazin</h3>
+                <p>Clienți prezenți: 15</p>
+
+                <meter id="ocupare-magazin" min="0" max="100" low="30" high="80" optimum="15" value="15">
+                    15 din 100
+                </meter>
+
+
+            </section>
+            <a href="resurse/imagini/coffee_beans_600x.webp">
+                <img src="resurse/imagini/coffee_beans_600x.webp" alt="Peisaj montan la apus">
+            </a>
+            <!--  Cerinta 10 -->
+            <section id="anunturi">
+                <h2 class="fg-img">Evenimente</h2>
+                <ul>
+                    <li>
+                        <p><time datetime="2026-03-08">8 Martie 2026:</time> <b>La mulți ani tuturor doamnelor și
+                                domnișoarelor!</b> Vă așteptăm la cafenea cu o cafea din partea casei!</p>
+                    </li>
+                    <li>
+                        <p><time datetime="2026-03-01">1 Martie 2026:</time> <b>O primăvară frumoasă!</b> De 1 martie,
+                            orice cafea cumpărată va fi însoțită de un mărțișor dulce!</p>
+                    </li>
+                    <li>
+                        <p><time datetime="2022-02-24">24 Februarie 2026:</time> <b>La mulți ani,
+                                îndrăgostiților!</b><span> De dragobete, la fiecare 2 cafele cumpărate primiți o
+                                surpriză dulce de împărțit!</span></p>
+
+                    </li>
+                    <li>
+                        <p><time datetime="2026-02-18">18 Februarie 2026:</time> <b>Barista Wannabe!</b><span> Vă
+                                așteptăm la competiția de barista! Câștigătorul va pleca acasă cu o pungă din cea mai
+                                nouă cafea de specialitate din meniul nostru: <strong>Ethiopia Gargari!</strong>
+                            </span></p>
+
+                    </li>
+                </ul>
+            </section>
+            <section id="index-intrebari">
+                <h2>Întrebări frecvente</h2>
+                <details>
+                    <summary>Cafeaua se poate servi și cu lapte vegetal?</summary>
+                    <p>Da! Avem lapte fără lactoză, lapte de soia, de ovăz și de migdale</p>
+                </details>
+                <details>
+                    <summary>Există vreo reducere de fidelitate?</summary>
+                    <p>Cu siguranță! La fiecare cafea cumpărată se înregistrează 1 punct în cardul de fidelitate
+                        personal! <br>
+                        La 7 puncte vă oferim din partea casei orice băutură pe bază de cafea din meniul nostru! Băutura
+                        se poate revendica doar pe baza prezenței fizice a cardului de fidelitate</p>
+                </details>
+                <h3>Rating mediu utilizatori</h3>
+                <p>Scor actual: 9.2 / 10</p>
+
+                <meter id="rating-produs" min="0" max="10" low="3" high="8" optimum="10" value="9.2">
+                    9.2 din 10
+                </meter>
+            </section>
+
+        </div>
+        <section id="galerie-statica">
+            <h2>Galerie</h2>
+            <div id="grid-galerie">
+                <figure>
+                    <picture>
+                        <source media="(min-width: 1024px)" srcset="/resurse/imagini/types_of_coffee_480x600.png">
+                        <source media="(min-width: 768px)" srcset="/resurse/imagini/types_of_coffee_360x450.png">
+                        <img src="/resurse/imagini/types_of_coffee_240x300.png" alt="Băuturile noastre"
+                            title="Băuturile noastre">
+                    </picture>
+                    <figcaption>Doar o mică parte din selecția de băuturi pe care v-o oferim.</figcaption>
+                </figure>
+            </div>
+        </section>
+        <section id="retete">
+            <h2>Tutoriale</h2>
+            <p>Pentru a obține cel mai cremos și spectaculos Latte sau Cappuccino, vă oferim mai jos un tutorial
+                explicit ce vă învață cum să spumați laptele și cum să faceți un <b>Latte Art</b> memorabil</p>
+            <a href="https://www.wikihow.com/Make-Latte-Art" target="_blank">Tutorial Pas cu Pas</a><br>
+            <a href="resurse/documente/ghid_latte_art.pdf" download="Ghid.pdf">Descarcă ghidul nostru!</a>
+            <p>După ce ati terminat cafeaua, vă așteptăm să o savurați alături de o lectură interesantă despre <a
+                    href="https://ro.wikipedia.org/wiki/Cafea#Istoric" target="_blank">Istoria Cafelei</a></p>
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                    <a href="https://www.youtube.com/embed/SiefJJv-Qho?start=5" target="ifr-video">Tutorial Latte Art
+                        Inimă</a>
+                    <a href="https://www.youtube.com/embed/E2fPJMkY0_Y" target="ifr-video">Tutorial Latte Art Rozetă</a>
+                    <a href="https://www.youtube.com/embed/KqG0C5i5oGc" target="ifr-video">Tutorial Latte Art
+                        Lalea</a><br />
+                </div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/SiefJJv-Qho?start=5"
+                    name="ifr-video" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <%- include("../fragmente/footer.ejs") %>
+</body>
+
+</html>
