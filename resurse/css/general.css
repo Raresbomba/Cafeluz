@@ -1,7 +1,11 @@
 body{
-    --culoare-fundal: bisque;
-    --culoare-contur: #800020;
-    --margine-pagina: 100px;
+    --culoare-fundal: #ffe4c4;
+    --culoare-contur: #801900;
+    --culoare-fundal-header: #A36540;
+    --culoare-fundal-footer: #3a2C28;
+    --culoare-text-footer: #ffd987;
+    --margine-pagina: 120px;
+    --latime-media-min: 250px;
     background-color: var(--culoare-fundal);
 }
 
@@ -9,35 +13,33 @@ p{
     border: 1px solid var(--culoare-fundal);
 }
 
+#titlu{
+    background-color: var(--culoare-fundal-header);
+
+}
+
 main{
     margin-left: var(--margine-pagina);
     margin-right: var(--margine-pagina);
 }
 
-#grid-pagina{
-    display: grid;
-    gap:10px;
-}
-
-#grid-pagina{
-    grid-template-columns: 2fr 1fr 2fr;
-    grid-template-areas: "welcome welcome welcome"
-                         "promotii promotii anunturi"
-                         "fig1 orar orar"
-                         "fig2 orar orar"
-                         "fig3 orar orar"
-                         "produse produse index-intrebari";
-    
-    gap: 20px;
-}
-
-#grid-pagina > *{
-    border: 1px solid var(--culoare-contur);
-    box-shadow: 0 0 5px var(--culoare-contur);
+#grid-pagina > * {
+    border:1px solid var(--culoare-contur);
+    box-shadow: 0px 0px 5px var(--culoare-contur);
     padding: 10px;
 }
 
- 
+#grid-pagina{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "welcome welcome welcome welcome"
+                         "promotii promotii promotii promotii"
+                         "fig1 produse produse orar"
+                         "index-intrebari galerie-statica retete retete";
+    
+    gap: 10px;
+}
+
 #welcome{
     grid-area: welcome;
 }
@@ -66,6 +68,12 @@ main{
 #index-intrebari{
     grid-area: index-intrebari;
 }
+#galerie-statica{
+    grid-area: galerie-statica;
+}
+#retete{
+    grid-area: retete;
+}
 figure{
     margin: 0;
 }
@@ -76,36 +84,142 @@ figure{
   font-style: normal;
 }
 
+.container-iframe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 315px;
+    width: 800px;
+}
+
+.container-iframe iframe{
+    width: 80%;
+    min-width: var(--latime-media-min);
+    max-width: 800px;
+    border: none;
+    aspect-ratio: 16/9;
+}
+
+.taburi-iframe{
+    display: flex;
+    flex-direction: row;
+    align-items:stretch;
+    /* height: 100%; */
+    justify-content: flex-end;
+    border: 1px solid var(--culoare-contur);
+    
+}
+
+.taburi-iframe > a{
+    display: inline-block;
+    padding: 10px;
+    background-color: var(--culoare-fundal);
+    border: 1px solid var(--culoare-contur);
+    color: black;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    /* margin-right: 10px; */
+    transition: all 1s linear;
+}
+.taburi-iframe > a:hover{
+    background-color: var(--culoare-contur);
+    color: var(--culoare-fundal);
+}
+
+.grid_galerie picture{
+    width:80%;
+    min-width: var(--latime-media-min);
+    max-width: 800px;
+    height: auto;
+}
+
+.poza-intro a img{
+    width:80%;
+    min-width: var(--latime-media-min);
+    max-width: 800px;
+    height: auto;
+}
+
+#tab-orar{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+#tab-orar caption {
+    caption-side: bottom;
+    padding: 10px;
+    font-style: italic;
+}
+
+#tab-orar tbody tr:nth-child(odd) {
+    background-color: var(--culoare-contur)
+}
+
+#tab-orar tbody tr:nth-child(even) {
+    background-color: var(--culoare-fundal-header)
+}
+
+#tab-orar tbody tr {
+    transition: background-color 0.4s ease; 
+}
+
+#tab-orar tbody tr:hover {
+    background-color: #d1d1d1; 
+    cursor: pointer;
+}
+
+
+footer{
+    background-color: var(--culoare-fundal-footer);
+    color: var(--culoare-text-footer);
+}
+
+footer >{
+    margin-block: 0;
+}
 
 @media screen and (max-width: 1200px) {
 
     body{
-        --margine-pagina: 50px;
+        --margine-pagina: 80px;
+        --latime-media-min: 150px;
     }
 
     #grid-pagina{
-    grid-template-columns: 1fr 2fr;
-    grid-template-areas: "welcome welcome "
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "welcome welcome"
                          "promotii promotii"
                          "anunturi anunturi"
                          "fig1 orar"
                          "fig2 orar"
                          "fig3 orar"
                          "produse produse"
-                         "index-intrebari index-intrebari";
+                         "index-intrebari index-intrebari"
+                         "galerie-statica retete";
+                         
     
-    gap: 20px;
+    gap: 7px;
 }
-    
+    .container-iframe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 315px;
+    width:100%;
+}
 }
 
 @media screen and (max-width: 700px) {
 
     body{
         --margine-pagina: 50px;
+        --latime-media-min: 75px;
     }
     #grid-pagina{
     display:block;
+    gap: 5px;
 }
 }
 
