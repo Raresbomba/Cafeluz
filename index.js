@@ -1,33 +1,134 @@
 const express= require("express");
 const path= require("path");
+const fs = require("fs");
+const urlindex = ["/", "/home", "/index"];
+const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
+
+for (let folder of vect_foldere) {
+    let caleFolder = path.join(__dirname, folder);
+
+    if (!fs.existsSync(caleFolder)) {
+        fs.mkdirSync(caleFolder);
+        console.log(`Folderul "${folder}" a fost creat.`);
+    } else {
+        console.log(`Folderul "${folder}" există deja.`);
+    }
+}
+
 
 app= express();
 app.set("view engine", "ejs")
+
+obGlobal={
+    obErori:null,
+    obImagini:null,
+}
 
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
 app.get("/cale", function(req,res){
+    let userip = req.ip;
     console.log("Am primit o cerere GET la adresa /cale");
     res.send("Raspuns la GET");
 });
 
 app.get("/cale2",function(req,res){
+    let userip = req.ip;
     res.write("ceva");
     res.end();
 });
 
-app.get("/",function(req,res){
-    res.render("pagini/index");
+app.get(urlindex, function(req,res){
+    let userip = req.ip;
+    res.render("pagini/index", {ip: userip});
 });
+
+app.get("despre/prezentare", function(req,res){
+    let userip = req.ip;
+    res.render("pagini/prezentare", {ip: userip});
+})
 
 
 app.get("/cale/:a/:b",function(req,res){
     res.send(parseInt(req.params.a) + parseInt(req.params.b));
 });
 
+function initErori(){
+    let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
+    let erori=obGlobal.obErori=JSON.parse(continut)
+    let err_default=erori.eroare_default
+    err_default.imagine=path.join(erori.cale_baza, err_default.imagine)
+    for (let eroare of erori.info_erori){
+        eroare.imagine=path.join(erori.cale_baza, eroare.imagine)
+    }
+}
+initErori()
+
+function afisareEroare(res, identificator, titlu, text, imagine){
+    //TO DO cautam eroarea dupa identificator
+    let eroare = obGlobal.obErori.info_erori.find((elem) =>
+        elem.identificator === identificator
+    )
+    if(eroare?.status)
+        res.status(eroare.identificator);
+    //daca sunt setate titlu, text, imagine, le folosim, 
+    //altfel folosim cele din fisierul json pentru eroarea gasita
+    //daca nu o gasim, afisam eroarea default
+    let errDefault = obGlobal.obErori.eroare_default
+     res.render("pagini/eroare", {
+        ip: res.req.ip,
+        imagine: imagine || eroare?.imagine || errDefault.imagine,
+        titlu: titlu || eroare?.titlu || errDefault.titlu,
+        text: text || eroare?.text || errDefault.text,
+    });
+}
+
+app.get("/favicon.ico", function(req,res){
+    res.sendFile(path.join(__dirname, "/resurse/imagini/favicon/favicon.ico"))
+})
+
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
+
+app.get("/*pagina", function(req,res){
+    console.log("Cale pagina", req.url)
+    if(req.url.startsWith("/resurse") && path.extname(req.path)==""){
+        afisareEroare(res,403);
+        return;
+    }
+    if(path.extname(req.url)==".ejs"){
+        afisareEroare(res,400);
+        return;
+    }
+
+    let userip = req.ip;
+
+    try{
+        res.render("pagini"+req.url, {ip : userip} , function(err, rezRandare){
+            if(err){
+                if(err.message.includes("Failed to lookup view")){
+                    afisareEroare(res,404);
+                    return;
+                }
+                afisareEroare(res);
+                return;
+            }
+            res.send(rezRandare);
+            console.log("Randare: ", res.rezRandare);
+        });
+    }
+    catch(err){
+        if(err.message.includes("Cannot find module")){
+            afisareEroare(res,404);
+            return;
+        }
+        afisareEroare(res);
+        return;
+    }
+});
+
+
 
 app.listen(8081);
 console.log("Serverul a pornit!");
