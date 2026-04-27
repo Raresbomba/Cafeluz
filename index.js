@@ -3,7 +3,7 @@ const path= require("path");
 const fs = require("fs");
 const urlindex = ["/", "/home", "/index"];
 const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
-
+const sass = require('sass');
 for (let folder of vect_foldere) {
     let caleFolder = path.join(__dirname, folder);
 
@@ -14,6 +14,106 @@ for (let folder of vect_foldere) {
         console.log(`Folderul "${folder}" există deja.`);
     }
 }
+
+
+//Definire SCSS
+
+global.folderScss = path.join(__dirname, 'resurse', 'scss');
+global.folderCss = path.join(__dirname, 'resurse', 'css');
+global.folderBackup = path.join(__dirname, 'backup');
+const foldereScss = [
+    global.folderScss,
+    global.folderCss
+];
+
+foldereScss.forEach(folder => {
+    if(!fs.existsSync(folder)){
+        fs.mkdir(folder, {recursive: true});
+    }
+});
+
+//Functie de compilare SCSS
+
+function compileazaScss(caleScss, caleCss){
+    let drumScss, drumCss;
+    if(path.isAbsolute(caleScss)){
+        drumScss = caleScss;
+    }
+    else{
+        drumScss = path.join(global.folderScss, caleScss);
+    }
+
+    if(!caleCss){
+        const numeFisierScss = path.basename(drumScss, '.scss');
+        drumCss = path.join(global.folderCss, numeFisierScss + '.css');
+    }
+    else if(path.isAbsolute(caleCss)){
+        drumCss = caleCss;
+    }
+    else{
+        drumCss = path.join(global.folderCss, caleCss);
+    }
+
+    //Salvarea in backup a fisierului Css
+
+    if(fs.existsSync(drumCss)){
+        try{
+            const numeFisierCss = path.basename(drumCss);
+            const fisierDestBackup = path.join(global.folderBackup, "resurse", "css");
+            const caleBackup = path.join(fisierDestBackup, numeFisierCss);
+            if(!fs.existsSync(fisierDestBackup)){
+                fs.mkdirSync(fisierDestBackup, {recursive : true});
+            }
+            fs.copyFileSync(drumCss, caleBackup);
+        }
+        catch (err) {
+            console.error(`[Eroare Backup] Nu s-a putut crea copia de rezervă: ${err.message}`);
+        }
+    }
+
+    try{
+        if(!fs.existsSync(drumScss)){
+            console.error(`Eroare: Fisierul Scss nu a fost gasit la calea: ${drumScss}`);
+            return;
+        }
+        const rezultat = sass.compile(drumCss, rezultat.css);
+    }
+    catch(eroare){
+        console.error(eroare.message);
+    }
+}
+
+///Compilarea initiala SCSS
+
+function compilareInitialaScss() {
+    try {
+        const fisiere = fs.readdirSync(global.folderScss);
+        const fisiereScss = fisiere.filter(f => path.extname(f).toLowerCase() === '.scss');
+        if (fisiereScss.length === 0) {
+            console.log("Nu s-au găsit fișiere SCSS pentru compilare.");
+            return;
+        }
+
+        fisiereScss.forEach(fisier => {
+            compileazaScss(fisier);
+        });
+    } catch (eroare) {
+        console.error("Eroare la citirea folderului SCSS:", eroare.message);
+    }
+}
+
+//Compilarea pe parcurs Scss
+
+function compilareParcursScss() {
+    fs.watch(global.folderScss, (eventType, filename) => {
+        if (filename && filename.endsWith('.scss')) {
+            if (filename.startsWith('_')) return;
+            compileazaScss(filename);
+        }
+    });
+}
+
+
 
 
 app= express();
@@ -34,6 +134,12 @@ app.get("/cale", function(req,res){
     res.send("Raspuns la GET");
 });
 
+app.get('/galerie', (req, res) => {
+    const pozeJson = fs.readFileSync(path.join(__dirname,'/resurse/json/galerie.json'), 'utf8');
+    const pozeGalerie = JSON.parse(pozeJson);
+    res.render('pagini/galerie-statica', { galerie: pozeGalerie });
+});
+
 app.get("/cale2",function(req,res){
     let userip = req.ip;
     res.write("ceva");
@@ -42,7 +148,9 @@ app.get("/cale2",function(req,res){
 
 app.get(urlindex, function(req,res){
     let userip = req.ip;
-    res.render("pagini/index", {ip: userip});
+    const pozeJson = fs.readFileSync(path.join(__dirname,'/resurse/json/galerie.json'), 'utf8');
+    const pozeGalerie = JSON.parse(pozeJson);
+    res.render("pagini/index", {ip: userip, galerie: pozeGalerie});
 });
 
 app.get("despre/prezentare", function(req,res){
@@ -127,6 +235,11 @@ app.get("/*pagina", function(req,res){
         return;
     }
 });
+
+//Apelarea functiilor Scss
+
+compilareInitialaScss();
+compilareParcursScss();
 
 
 

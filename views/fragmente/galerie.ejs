@@ -1,0 +1,30 @@
+<section id="galerie-statica">
+    <h2>Galerie Foto</h2>
+    <div class="grid-galerie">
+        <% 
+            const oraCurenta = new Date().getHours(); 
+        %>
+
+        <% for(let img of galerie.imagini) { 
+            let esteVizibila = img.intervale_ore.some(interval => {
+                let oraStart = interval[0];
+                let oraFinal = interval[1];
+                return oraCurenta >= oraStart && oraCurenta <= oraFinal;
+            });
+
+            if (esteVizibila) { %>
+                <figure class="item-galerie">
+                    <picture>
+                        <img src="<%- galerie.cale_galerie + img.cale_relativa %>" 
+                             alt="<%- img.alternativ %>" 
+                             title="<%- img.nume_imag %>">
+                    </picture>
+                    <figcaption>
+                        <strong><%- img.nume_imag %></strong><br>
+                        <small><%- img.descriere_imag %></small>
+                    </figcaption>
+                </figure>
+            <% } 
+        } %>
+    </div>
+</section>

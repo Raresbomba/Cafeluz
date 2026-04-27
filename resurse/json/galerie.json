@@ -1,0 +1,47 @@
+{
+    "cale_galerie": "/resurse/imagini/",
+    "imagini": [
+        {
+            "cale_relativa": "latte_art_540.png",
+            "nume_imag": "Latte",
+            "alternativ": "O ceasca cu latte art",
+            "descriere_imag": "Cafea proaspăt măcinată acoperită de o cremă bogată de lapte.",
+            "intervale_ore": [[2, 7], [14, 16], [22, 23]]
+        },
+        {
+            "cale_relativa": "cold_brew_latte_540.png",
+            "nume_imag": "Colectie cold brew",
+            "alternativ": "Cesti cold brew",
+            "descriere_imag": "Cafea extrasă lent, la temperaturi scăzute, perfectă pentru o zi toridă de vară",
+            "intervale_ore": [[5, 9], [12, 13], [18, 24]]
+        },
+        {
+            "cale_relativa": "espresso_540.png",
+            "nume_imag": "Espresso",
+            "alternativ": "Ceasca espresso",
+            "descriere_imag": "Cafea concentrată, ce surprinde cel mai bine aroma și savoarea boabelor de cafea",
+            "intervale_ore": [[7, 10], [15, 18], [20, 24]]
+        },
+        {
+            "cale_relativa": "latte_macchiato_540.png",
+            "nume_imag": "Latte macchiato",
+            "alternativ": "Ceasca latte macchiaato",
+            "descriere_imag": "O spumă bogată de lapte, pătată cu un shot de espresso",
+            "intervale_ore": [[10, 13], [16, 17], [20, 22]]
+        },
+        {
+            "cale_relativa": "v60_540.png",
+            "nume_imag": "Cafea V60",
+            "alternativ": "Ceasca v60",
+            "descriere_imag": "Cafea filtrată măcinată foarte fin pentru un gust intens",
+            "intervale_ore": [[1, 7], [14, 16], [18, 19]]
+        },
+        {
+            "cale_relativa": "americano_540.png",
+            "nume_imag": "Americano",
+            "alternativ": "Ceasca americano",
+            "descriere_imag": "Espresso proaspăt diluat cu apa pentru un volum mai ridicat",
+            "intervale_ore": [[6, 10], [13, 16], [22, 24]]
+        }
+    ]
+}

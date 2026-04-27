@@ -1,0 +1,30 @@
+.grid-galerie {
+    display: grid;
+    /* Creează coloane care se adaptează automat la lățimea ecranului */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.item-galerie {
+    border: 1px solid #ddd;
+    margin: 0;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.item-galerie:hover {
+    transform: scale(1.02);
+}
+
+.item-galerie img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.item-galerie figcaption {
+    padding: 10px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+}
